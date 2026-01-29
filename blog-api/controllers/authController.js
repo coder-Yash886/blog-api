@@ -46,9 +46,55 @@ const register = async function(req,res){
     }
     
 };
+const login = async function(req,res){
+    try{
+        const {email, password} = req.body;
+        if(!email || !password){
+            return res.status(400).json({
+                success: false,
+                message: "Please provide  email and password"
+            })
+        }
+
+        const user = await User.findOne({email}).select("password")
+        if(!user){
+            return res.status(401).json({
+                success: false,
+                message: "Invalid email and password"
+            })
+        }
+
+        const isPasswordRight = await user.comparePassword(password);
+        if(!isPasswordRight){
+            return res.status(401).json({
+                success: false,
+                message: "Invalid Credentials"
+            })
+        }
+
+        const token = generateToken(user._id);
+        res.status(200).json({
+            success: true,
+            message: "Login Successsful",
+            data:{
+                id: user._id,
+                name: user.name,
+                email: user.email,
+                token
+            }
+        })
+
+    } catch(error){
+        res.status(500).json({
+            success: false,
+            message: error.message
+        })
+    }
+};
 
 
 module.exports = {
     register,
+    login
     
 }
