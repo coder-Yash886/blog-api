@@ -1,7 +1,9 @@
 const express = require("express");
 const dotenv = require("dotenv");
+const connectDB = require('./config/db');
 
 dotenv.config();
+connectDB();
 
 const app = express();
 app.use(express.json());
@@ -13,13 +15,6 @@ app.get('/',function(req,res){
     })
 })
 
-app.get('/about',function(req,res){
-    res.json({
-        success: true,
-        message:"Jai Shree Kungbihariharidas",
-        developer: "jai Shree Radha Rani"
-    })
-})
 
 const PORT = process.env.PORT || 8000;
 
