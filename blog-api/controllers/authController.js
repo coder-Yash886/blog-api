@@ -1,6 +1,8 @@
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 
+
+
 const generateToken = (userId) => {
       return jwt.sign(
         {id: userId},
@@ -20,11 +22,15 @@ const register = async function(req,res){
                 message: "You are already signup"
             })
         }
+        console.log("Before user create");
+
         const user = await User.create({
         name,
         email,
         password
     })
+    console.log("Before user create");
+
 
     const token = generateToken(user._id);
     res.status(201).json({
@@ -56,7 +62,7 @@ const login = async function(req,res){
             })
         }
 
-        const user = await User.findOne({email}).select("password")
+        const user = await User.findOne({email}).select("+password")
         if(!user){
             return res.status(401).json({
                 success: false,
