@@ -48,7 +48,11 @@ blog-api/
 ├── server.js
 └── README.md
 
+
+---
+
 ## ⚙️ Environment Variables
+
 Create a `.env` file in root directory:
 
 ```env
@@ -56,7 +60,6 @@ PORT=8000
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_secret_key
 
-## 🔧 Installation
 git clone https://github.com/coder-Yash886/blog-api.git
 cd blog-api
 npm install
@@ -64,36 +67,39 @@ npm run dev
 
 http://localhost:8000
 
-📌 API Endpoints
-🔐 Auth
-Method	Endpoint	Description
-POST	/api/register	Register
-POST	/api/login	Login
+Api endpoint
 
-##📝 Posts
-Method	Endpoint	Description
-GET	/api/posts	Get all
-GET	/api/posts/:id	Get one
-POST	/api/posts	Create
-PUT	/api/posts/:id	Update
-DEL	/api/posts/:id	Delete
+| Method | Endpoint      | Description |
+| ------ | ------------- | ----------- |
+| POST   | /api/register | Register    |
+| POST   | /api/login    | Login       |
 
-Register
+
+| Method | Endpoint       | Description |
+| ------ | -------------- | ----------- |
+| GET    | /api/posts     | Get all     |
+| GET    | /api/posts/:id | Get one     |
+| POST   | /api/posts     | Create      |
+| PUT    | /api/posts/:id | Update      |
+| DELETE | /api/posts/:id | Delete      |
+
+REGISTER ENDPOINT
+
 {
   "name": "Yash",
   "email": "yash@gmail.com",
   "password": "123456"
 }
 
-Login
+LOGIN ENDPOINT
 {
   "email": "yash@gmail.com",
   "password": "123456"
 }
 
-Create Post
+CREATE ENDPONIT
+
 {
   "title": "My First Blog",
   "content": "This is my first post"
 }
-
